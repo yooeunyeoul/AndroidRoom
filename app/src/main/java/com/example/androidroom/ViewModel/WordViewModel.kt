@@ -30,11 +30,15 @@ import kotlinx.coroutines.launch
  *
  *  안드로이드 X Lifecycler-ViewModel-ktx 라이브러리는 ViewModel 의 확장함수인 로서 ViewModelScope 를 추가하였습니다. 이것은 scope 관리를 더 쉽게 해줍니다.
  *
+ * Whenever the data changes, the onChanged() callback is invoked, which calls the adapter's setWord() method to update the adapter's cached data and refresh the displayed list.
+ *
  */
+
+
 class WordViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository: WordRepository
-    private val allWords: LiveData<List<Word>>
+    val allWords: LiveData<List<Word>>
 
     init {
         val wordsDao = WordRoomDatabase.getDatabase(application , viewModelScope).wordDao()
